@@ -29,9 +29,8 @@ public class Main {
         String nomJUN = jUn.nextLine();
         System.out.println("Joueur 2 veuillez saisir votre nom : ");
         String nomJDeux = jUn.nextLine();
-        String personne ;
-
         ArrayList <String> resultats = new ArrayList <> ();
+
 
         do {
             char[][] tab = new char[3][3];
@@ -94,56 +93,67 @@ public class Main {
                 if (tab[0][0] == 'X' && tab[0][1] == 'X' && tab[0][2] == 'X') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJUN);
+                    resultats.add(nomJUN);
                     break;
                 } else if (tab[0][0] == 'O' && tab[0][1] == 'O' && tab[0][2] == 'O') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJDeux);
+                    resultats.add(nomJDeux);
                     break;
                 }
                 //Ligne 2
                 else if (tab[1][0] == 'X' && tab[1][1] == 'X' && tab[1][2] == 'X') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJUN);
+                    resultats.add(nomJUN);
                     break;
                 } else if (tab[1][0] == 'O' && tab[1][1] == 'O' && tab[1][2] == 'O') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJDeux);
+                    resultats.add(nomJDeux);
                     break;
                 }
                 //Ligne 3
                 else if (tab[2][0] == 'X' && tab[2][1] == 'X' && tab[2][2] == 'X') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJUN);
+                    resultats.add(nomJUN);
                     break;
                 } else if (tab[2][0] == 'O' && tab[2][1] == 'O' && tab[2][2] == 'O') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJDeux);
+                    resultats.add(nomJDeux);
                     break;
                 }
                 //Colonne 1
                 else if (tab[0][0] == 'X' && tab[1][0] == 'X' && tab[2][0] == 'X') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJUN);
+                    resultats.add(nomJUN);
                     break;
                 } else if (tab[0][0] == 'O' && tab[1][0] == 'O' && tab[2][0] == 'O') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJDeux);
+                    resultats.add(nomJDeux);
                     break;
                 }
                 //Colonne 2
                 else if (tab[0][1] == 'X' && tab[1][1] == 'X' && tab[2][1] == 'X') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJUN);
+                    resultats.add(nomJUN);
                     break;
                 } else if (tab[0][1] == 'O' && tab[1][1] == 'O' && tab[2][1] == 'O') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJDeux);
+                    resultats.add(nomJDeux);
                     break;
                 }
                 //Colonne 3
                 else if (tab[0][2] == 'X' && tab[1][2] == 'X' && tab[2][2] == 'X') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJUN);
+                    resultats.add(nomJUN);
                     break;
                 } else if (tab[0][2] == 'O' && tab[1][2] == 'O' && tab[2][2] == 'O') {
                     vainqueur = true;
@@ -178,11 +188,12 @@ public class Main {
 
                 if (rempli(tab) == true && vainqueur == false) {
                     System.out.println("Match nul");
+                    resultats.add("Match nul");
                     break;
                 }
             }
-
-            System.out.println("Voulez-vous rejouer ? (o/n) :");
+            
+            System.out.println("\nVoulez-vous rejouer ? (o/n) :");
             reponseJun = jUn.nextLine();
 
             String tempNom = nomJUN ;
@@ -194,10 +205,13 @@ public class Main {
             emplacementJdeux = tempEmplacement ;
 
         } while (reponseJun.equals("o")|| reponseJun.equals("O")|| reponseJun.equals("oui")|| reponseJun.equals("OUI"));
-
-
+        System.out.println("Liste des vainqueurs :");
+        for(String elem : resultats) {
+            System.out.println(elem);
+            System.out.println("--------");
         }
 
+        }
 
 
     public static boolean rempli(char[][] tab) {
