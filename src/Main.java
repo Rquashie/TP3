@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -13,28 +14,34 @@ public class Main {
 
 
         int tour = 1;
-        String emplacementJun, emplacementJdeux = "";
+        String emplacementJun = "";
+        String emplacementJdeux = "";
         boolean vainqueur = false, rempli = false;
         int caseVide = 0;
 
 
         //Tableau
-        char[][] tab = new char[3][3];
-        String reponseJUn = "";
+
+        String reponseJun = "";
+
+        //Nom des joueurs
+        System.out.println("Joueur 1 veuillez saisir votre nom : ");
+        String nomJUN = jUn.nextLine();
+        System.out.println("Joueur 2 veuillez saisir votre nom : ");
+        String nomJDeux = jUn.nextLine();
+        String personne ;
+
+        ArrayList <String> resultats = new ArrayList <> ();
 
         do {
-            //Nom des joueurs
-            System.out.println("Joueur 1 veuillez saisir votre nom : ");
-            String nomJUN = jUn.nextLine();
-            System.out.println("Joueur 2 veuillez saisir votre nom : ");
-            String nomJDeux = jUn.nextLine();
+            char[][] tab = new char[3][3];
 
             //COMMENCER PARTIE
             while (tour <= 9) {
                 tour++;
                 //TOUR J1
                 System.out.println(nomJUN + " : veuillez choisir un emplacement (X)");
-                emplacementJun = jDeux.nextLine();
+                emplacementJun = jUn.nextLine();
                 if (emplacementJun.equals("L1C1")) {
                     tab[0][0] = 'X';
                 } else if (emplacementJun.equals("L1C2")) {
@@ -141,24 +148,30 @@ public class Main {
                 } else if (tab[0][2] == 'O' && tab[1][2] == 'O' && tab[2][2] == 'O') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJDeux);
+                    resultats.add(nomJDeux) ;
                     break;
                 }
                 //DIAGONALE 1
                 else if (tab[0][0] == 'X' && tab[1][1] == 'X' && tab[2][2] == 'X') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJUN);
+                    resultats.add(nomJUN);
                     break;
                 } else if (tab[0][0] == 'O' && tab[1][1] == 'O' && tab[2][2] == 'O') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJDeux);
+                    resultats.add(nomJDeux);
                     break;
                 }
                 //DIAGONALE 2
                 else if (tab[0][2] == 'X' && tab[1][1] == 'X' && tab[2][0] == 'X') {
                     vainqueur = true;
                     System.out.println("Vainqueur : " + nomJUN);
+                    resultats.add(nomJUN) ;
+                    break;
                 } else if (tab[0][2] == 'O' && tab[1][1] == 'O' && tab[2][0] == 'O') {
                     vainqueur = true;
+                    resultats.add(nomJDeux) ;
                     System.out.println("Vainqueur : " + nomJDeux);
                     break;
                 }
@@ -168,11 +181,23 @@ public class Main {
                     break;
                 }
             }
-            System.out.println("Voulez-vous rejouer ? (o/n) :");
-            String reponseJun = jUn.nextLine().toUpperCase();
 
-        } while (reponseJUn.equals("O") || reponseJUn.equals('o'));
-    }
+            System.out.println("Voulez-vous rejouer ? (o/n) :");
+            reponseJun = jUn.nextLine();
+
+            String tempNom = nomJUN ;
+            nomJUN = nomJDeux ;
+            nomJDeux = tempNom ;
+
+            String tempEmplacement = emplacementJun ;
+            emplacementJun = emplacementJdeux ;
+            emplacementJdeux = tempEmplacement ;
+
+        } while (reponseJun.equals("o")|| reponseJun.equals("O")|| reponseJun.equals("oui")|| reponseJun.equals("OUI"));
+
+
+        }
+
 
 
     public static boolean rempli(char[][] tab) {
